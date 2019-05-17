@@ -10,9 +10,9 @@
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/animate.css">
+        <link rel="icon" href="favicon.png">
         <script src="js/jquery-3.4.1.min.js"></script>
         <script src="js/bootstrap.bundle.min.js"></script>
-        <script src="js/jquery.gradientify.min.js"></script>
         <script>
 
             class LandingPage {
@@ -23,9 +23,44 @@
 
                 }
 
-                setBackground() {
+                removeInfo() {
 
-                    main.style.cssText = this.arr[this.current - 1];
+                    document.querySelector('#block-' + this.current + '-1').classList.remove('fadeIn');
+                    document.querySelector('#block-' + this.current + '-2').classList.remove('fadeIn');
+
+                    document.querySelector('#block-' + this.current + '-1').classList.add('animated');
+                    document.querySelector('#block-' + this.current + '-1').classList.add('fadeOut');
+                    document.querySelector('#block-' + this.current + '-2').classList.add('animated');
+                    document.querySelector('#block-' + this.current + '-2').classList.add('fadeOut');
+
+                    document.querySelector('#block-' + this.current + '-1').style.display = 'none';
+                    document.querySelector('#block-' + this.current + '-2').style.display = 'none';
+
+                }
+
+                async showInfo() {
+
+                    document.querySelector('#block-' + this.current + '-1').classList.remove('fadeOut');
+                    document.querySelector('#block-' + this.current + '-2').classList.remove('fadeOut');
+
+                    document.querySelector('#block-' + this.current + '-1').style.display = 'block';
+                    document.querySelector('#block-' + this.current + '-2').style.display = 'block';
+
+                    document.querySelector('#block-' + this.current + '-1').classList.add('animated');
+                    document.querySelector('#block-' + this.current + '-1').classList.add('fadeIn');
+                    document.querySelector('#block-' + this.current + '-2').classList.add('animated');
+                    document.querySelector('#block-' + this.current + '-2').classList.add('fadeIn');
+
+                    //let timeid = setTimeout(this.removeTrash, 1500);
+
+                }
+
+                removeTrash() {
+
+                    document.querySelector('#block-' + this.current + '-1').classList.remove('animated');
+                    document.querySelector('#block-' + this.current + '-1').classList.remove('fadeIn');
+                    document.querySelector('#block-' + this.current + '-2').classList.remove('animated');
+                    document.querySelector('#block-' + this.current + '-2').classList.remove('fadeIn');
 
                 }
 
@@ -33,8 +68,12 @@
 
                     if (this.current < 4) {
                         
+                        this.removeInfo();
+
                         this.current += 1;
                         document.querySelector('#slide' + this.current).style.opacity = '1';
+
+                        this.showInfo();
 
                     }
 
@@ -44,8 +83,12 @@
 
                     if (this.current > 1) {
 
+                        this.removeInfo();
+
                         document.querySelector('#slide' + this.current).style.opacity = '0';
                         this.current -= 1;
+
+                        this.showInfo();
 
                     }
 
@@ -98,9 +141,24 @@
                                 <h3>Теперь с <i>Plan!</i> ваша жизнь станет намного проще</h3>
 
                             </div>
-                            <div id="block-2-1" style="display:none;"></div>
-                            <div id="block-3-1" style="display:none;"></div>
-                            <div id="block-4-1" style="display:none;"></div>
+                            <div id="block-2-1" style="display:none;">
+                            
+                                <h1>Познакомтесь с удобным интерфейсом</h1>
+                                <h3>В <i>Plan!</i> всё устроено так, чтобы пользователю было максимально удобно пользоваться нашим сервисом</h3>
+                            
+                            </div>
+                            <div id="block-3-1" style="display:none;">
+                            
+                                <h1>Объединяйтесь в команды</h1>
+                                <h3>Такие сервисы, как <i>Plan!</i> предназначены для организации работы в команде. Мы предоставляем данную возможность для наших пользователей</h3>
+                            
+                            </div>
+                            <div id="block-4-1" style="display:none;">
+                            
+                                <h1>Дорожная карта!</h1>
+                                <h3>Новшество <i>Plan!</i>: простое и быстрое создание дорожных карт проектов. Создавайте и используйте их вместе с общей страницей проекта</h3>
+                            
+                            </div>
 
                         </div>
                         <div class="col-12 col-xl-6 col-lg-6 col-md-12 col-sm-12"> 
@@ -110,9 +168,21 @@
                                     <img src="img/launch.svg">
                                 </center>
                             </div>
-                            <div id="block-2-2" style="display:none;"></div> 
-                            <div id="block-3-2" style="display:none;"></div> 
-                            <div id="block-4-2" style="display:none;"></div> 
+                            <div id="block-2-2" style="display:none;">
+                                <center>
+                                    <img src="img/editor.svg">
+                                </center>
+                            </div> 
+                            <div id="block-3-2" style="display:none;">
+                                <center>
+                                    <img src="img/team.svg">
+                                </center>
+                            </div> 
+                            <div id="block-4-2" style="display:none;">
+                                <center>
+                                    <img src="img/tactic.svg">
+                                </center>
+                            </div> 
 
                         </div>
 
