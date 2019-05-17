@@ -12,8 +12,58 @@
         <link rel="stylesheet" href="css/animate.css">
         <script src="js/jquery-3.4.1.min.js"></script>
         <script src="js/bootstrap.bundle.min.js"></script>
+        <script src="js/jquery.gradientify.min.js"></script>
         <script>
-        
+
+            class LandingPage {
+
+                constructor() {
+
+                    this.current = 1;
+
+                }
+
+                setBackground() {
+
+                    main.style.cssText = this.arr[this.current - 1];
+
+                }
+
+                up() {
+
+                    if (this.current < 4) {
+                        
+                        this.current += 1;
+                        document.querySelector('#slide' + this.current).style.opacity = '1';
+
+                    }
+
+                }
+
+                down() {
+
+                    if (this.current > 1) {
+
+                        document.querySelector('#slide' + this.current).style.opacity = '0';
+                        this.current -= 1;
+
+                    }
+
+                }
+
+            }
+
+            let lp = new LandingPage();
+
+            this.addEventListener('wheel', function(e) {
+
+                if (e.deltaY > 0)
+                    lp.up();
+                else
+                    lp.down();
+
+            });
+
             document.addEventListener('DOMContentLoaded', function(){
 
                 preloader_image.style.visibility = 'hidden';
@@ -21,7 +71,6 @@
 
             });
 
-        
         </script>
 
     </head>
@@ -29,8 +78,12 @@
 
         <img id="preloader_image" src="img/rocket-ship.svg">
 
-        <div id="main" class="first" style="visibility:hidden;">
+        <div id="main" style="visibility:hidden;">
                 
+            <div id="slide1" class="screen"></div>
+            <div id="slide2" class="screen" style="opacity: 0;"></div>
+            <div id="slide3" class="screen" style="opacity: 0;"></div>
+            <div id="slide4" class="screen" style="opacity: 0;"></div>
             <div id="container" class="row align-items-center animated fadeIn">
 
                 <div class="col-12">
@@ -39,19 +92,33 @@
 
                         <div class="col-12 col-xl-6 col-lg-6 col-md-12 col-sm-12 align-self-center">
                             
-                            <h1 id="mainHeader">Реализуйте проекты с помощью Plan!</h1>
-                            <h3>Теперь с <i>Plan!</i> ваша жизнь станет намного проще</h3>
+                            <div id="block-1-1">
+
+                                <h1>Реализуйте проекты с помощью Plan!</h1>
+                                <h3>Теперь с <i>Plan!</i> ваша жизнь станет намного проще</h3>
+
+                            </div>
+                            <div id="block-2-1" style="display:none;"></div>
+                            <div id="block-3-1" style="display:none;"></div>
+                            <div id="block-4-1" style="display:none;"></div>
 
                         </div>
                         <div class="col-12 col-xl-6 col-lg-6 col-md-12 col-sm-12"> 
-                            <center>
-                                <img src="img/launch.svg">
-                            </center>
+
+                            <div id="block-1-2"> 
+                                <center>
+                                    <img src="img/launch.svg">
+                                </center>
+                            </div>
+                            <div id="block-2-2" style="display:none;"></div> 
+                            <div id="block-3-2" style="display:none;"></div> 
+                            <div id="block-4-2" style="display:none;"></div> 
+
                         </div>
 
                     </div>
 
-            </div>
+                </div>
 
             </div>
 
