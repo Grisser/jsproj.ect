@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+
+        <meta charset="utf-8">
+        <link rel="icon" href="favicon.png">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <title>
+            Plan!
+        </title>
+
+    </head>
+    <body>
+
+        <div style="position: absolute; width: 100%; height: 100%;" class="row align-items-center">
+
+            <div class="col-2 col-xl-3 col-lg-3 col-md-2 col-sm-2 align-self-center"></div>
+            <div class="col-8 col-xl-6 col-lg-6 col-md-8 col-sm-8 align-self-center">
+
+                <form id="logreg">
+
+                    <h1>Авторизация</h1>
+                    <div id="authTabSelector" class="row align-items-center">
+                        
+                        <span class="col-6 selected" id="selLog">ВХОД</span>
+                        <span class="col-6" id="selReg">РЕГИСТРАЦИЯ</span>
+                    
+                    </div>
+
+                    <div id="login">
+
+                        <input placeholder="Логин"><br>
+                        <input placeholder="Пароль" type="password"><br>
+                        <button type="button" class="btn btn-lg btn-primary">Вход</button>
+
+                    </div>
+                    <div id="reg" class="hidden">
+
+                        <input placeholder="E-mail"><br>
+                        <input placeholder="Логин"><br>
+                        <input placeholder="Пароль" type="password"><br>
+                        <input placeholder="Повторите пароль" type="password"><br>
+                        <button type="button" class="btn btn-lg btn-primary">Регистрация</button>
+
+                    </div>
+
+                </form>
+
+            </div>
+            <div class="col-2 col-xl-3 col-lg-3 col-md-2 col-sm-2 align-self-center"></div>
+
+        </div>
+        <script src="js/auth.js"></script>
+
+    </body>
+
+</html>

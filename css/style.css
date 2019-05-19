@@ -197,6 +197,76 @@ nav#mobile {
 
 }
 
+#logreg {
+
+    background-color: #eeeeee;
+    text-align: center;
+    border-radius: 2em;
+    padding: 3%;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+
+}
+
+#logreg h1 {
+
+    font-family: 'Rubik';
+    font-size: 3em;
+    padding-top: 10%;
+
+}
+
+#logreg input {
+
+    padding: 0.75em 1.25em;
+    width: 60%;
+    font-size: 1.4em;
+    border: solid white;
+    font-family: 'Rubik';
+    margin-bottom: 2%;
+    border-radius: 2em;
+
+}
+
+#authTabSelector {
+
+    width: 100%;
+    padding-top: 5%;
+    padding-bottom: 7%;
+
+}
+
+#authTabSelector span {
+
+    font-size: 1.3em;
+    font-family: 'Rubik Light';
+    color: #555555;
+    cursor: pointer;
+
+}
+
+.selected {
+
+    font-family: 'Rubik' !important;
+    color: black !important;
+    cursor: default !important;
+
+}
+
+.hidden {
+
+    display: none;
+
+}
+
+button {
+
+    width: 40%;
+    padding: 2% 0 !important;
+    margin-top: 3% !important;
+    margin-bottom: 7% !important;
+
+}
+
 @media screen and (max-width: 1024px) {
 
     #preloader_image {
