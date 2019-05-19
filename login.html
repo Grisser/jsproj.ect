@@ -29,21 +29,24 @@
                         <span class="col-6" id="selReg">РЕГИСТРАЦИЯ</span>
                     
                     </div>
-
                     <div id="login">
 
-                        <input placeholder="Логин"><br>
-                        <input placeholder="Пароль" type="password"><br>
-                        <button type="button" class="btn btn-lg btn-primary">Вход</button>
+                        <div id="logerr" class="alert alert-danger" role="alert" style="margin-left: 20%; margin-bottom: 5%; width: 60%; display: none;">
+                            Пользователя с введёнными данными не существует!
+                        </div>
+
+                        <input id="logLog" placeholder="Логин"><br>
+                        <input id="logPas" placeholder="Пароль" type="password"><br>
+                        <button id="btnLog" type="button" class="btn btn-lg btn-primary">Вход</button>
 
                     </div>
                     <div id="reg" class="hidden">
 
-                        <input placeholder="E-mail"><br>
-                        <input placeholder="Логин"><br>
-                        <input placeholder="Пароль" type="password"><br>
-                        <input placeholder="Повторите пароль" type="password"><br>
-                        <button type="button" class="btn btn-lg btn-primary">Регистрация</button>
+                        <input id="regEmail" placeholder="E-mail"><br>
+                        <input id="regLog" placeholder="Логин"><br>
+                        <input id="regPas" placeholder="Пароль" type="password"><br>
+                        <input id="regReppas" placeholder="Повторите пароль" type="password"><br>
+                        <button id="btnReg" type="button" class="btn btn-lg btn-primary">Регистрация</button>
 
                     </div>
 
