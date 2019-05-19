@@ -15,6 +15,8 @@
         <script src="js/bootstrap.bundle.min.js"></script>
         <script>
 
+            'use strict';
+
             class LandingPage {
 
                 constructor() {
@@ -22,6 +24,57 @@
                     this.current = 1;
 
                 }
+
+                initMainMenu() {
+
+                    mobileMenuButton.addEventListener('click', function(){
+
+                        mobile.style.display = 'block';
+                        mobile.style.opacity = '1';
+
+                    });
+
+                    closeMobNav.addEventListener('click', function(){
+
+                        mobile.style.display = 'none';
+                        mobile.style.opacity = '0';
+
+                    });
+
+                }
+
+                /*
+                initMenu() {
+
+                    for (let i = 1; i <= 4; i += 1) {
+
+                        let id = '#m' + i;
+                        console.log(id);
+
+                        document.querySelector(id).addEventListener('click', function(){
+
+                            if (this.current != i) {
+
+                                this.removeInfo();
+
+                                this.current = i;
+                                
+                                for (let j = 1; j <= i; j += 1)
+                                    document.querySelector('#slide' + j).style.opacity = '1';
+                                for (let j = i + 1; j <= 4; j += 1)
+                                    document.querySelector('#slide' + j).style.opacity = '0';
+
+                                this.showInfo();
+                                this.updateMenu();
+
+                            }
+
+                        });
+
+                    }
+
+                }
+                */
 
                 removeInfo() {
 
@@ -38,7 +91,7 @@
 
                 }
 
-                async showInfo() {
+                showInfo() {
 
                     document.querySelector('#block-' + this.current + '-1').classList.remove('fadeOut');
                     document.querySelector('#block-' + this.current + '-2').classList.remove('fadeOut');
@@ -64,6 +117,23 @@
 
                 }
 
+                updateMenu() {
+    
+
+                    for (let i = 1; i <= 4; i += 1)  {
+
+                        document.querySelector('#m' + i).classList.remove('activatedPoint');
+                        document.querySelector('#m' + i).classList.add('notActivatedPoint');
+                        //document.querySelector('#m' + i).style.cursor = "pointer";
+
+                    }
+
+                    document.querySelector('#m' + this.current).classList.remove('notActivatedPoint');
+                    document.querySelector('#m' + this.current).classList.add('activatedPoint');
+                    //document.querySelector('#m' + i).style.cursor = "default";
+
+                }
+
                 up() {
 
                     if (this.current < 4) {
@@ -74,6 +144,7 @@
                         document.querySelector('#slide' + this.current).style.opacity = '1';
 
                         this.showInfo();
+                        this.updateMenu();
 
                     }
 
@@ -89,6 +160,7 @@
                         this.current -= 1;
 
                         this.showInfo();
+                        this.updateMenu();
 
                     }
 
@@ -111,6 +183,8 @@
 
                 preloader_image.style.visibility = 'hidden';
                 main.style.visibility = 'visible';
+                //lp.initMenu();
+                lp.initMainMenu();
 
             });
 
@@ -127,9 +201,41 @@
             <div id="slide2" class="screen" style="opacity: 0;"></div>
             <div id="slide3" class="screen" style="opacity: 0;"></div>
             <div id="slide4" class="screen" style="opacity: 0;"></div>
+            <nav id="mobile">
+
+                <div id="menuMobileContainer" class="row align-items-center">
+
+                    <div class="col-12">
+
+                        <a class="menuItemDesc" href="login.html">ВХОД/РЕГИСТРАЦИЯ</a>
+                        <a class="menuItemDesc" href="#">О ПРОЕКТЕ</a>
+
+                    </div>
+
+                </div>
+                <img id="closeMobNav" src="img/cancel.svg">
+
+            </nav>
             <div id="container" class="row align-items-center animated fadeIn">
 
+                <img id="mobileMenuButton" src="img/menu.svg">
+                <nav id="desktop">
+
+                    <a class="menuItemDesc" href="login.html">ВХОД/РЕГИСТРАЦИЯ</a>
+                    <a class="menuItemDesc" href="#">О ПРОЕКТЕ</a>
+            
+                </nav>
+
                 <div class="col-12">
+
+                    <div id="mm">
+
+                        <div id="m1" class="point activatedPoint"></div>
+                        <div id="m2" class="point notActivatedPoint" style="top: 40px;"></div>
+                        <div id="m3" class="point notActivatedPoint" style="top: 80px;"></div>
+                        <div id="m4" class="point notActivatedPoint" style="top: 120px;"></div>
+                
+                    </div>
 
                     <div class="row">
 
@@ -161,26 +267,26 @@
                             </div>
 
                         </div>
-                        <div class="col-12 col-xl-6 col-lg-6 col-md-12 col-sm-12"> 
+                        <div class="col-12 col-xl-5 col-lg-5 col-md-12 col-sm-12"> 
 
                             <div id="block-1-2"> 
                                 <center>
-                                    <img src="img/launch.svg">
+                                    <img class="slideImg" src="img/launch.svg">
                                 </center>
                             </div>
                             <div id="block-2-2" style="display:none;">
                                 <center>
-                                    <img src="img/editor.svg">
+                                    <img class="slideImg" src="img/editor.svg">
                                 </center>
                             </div> 
                             <div id="block-3-2" style="display:none;">
                                 <center>
-                                    <img src="img/team.svg">
+                                    <img class="slideImg" src="img/team.svg">
                                 </center>
                             </div> 
                             <div id="block-4-2" style="display:none;">
                                 <center>
-                                    <img src="img/tactic.svg">
+                                    <img class="slideImg" src="img/tactic.svg">
                                 </center>
                             </div> 
 
