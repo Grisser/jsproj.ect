@@ -31,21 +31,38 @@
                     </div>
                     <div id="login">
 
-                        <div id="logerr" class="alert alert-danger" role="alert" style="margin-left: 20%; margin-bottom: 5%; width: 60%; display: none;">
+                        <div id="logerr" class="alert alert-danger" role="alert" style="margin-left: 5%; margin-bottom: 5%; width: 90%; display: none;">
                             Пользователя с введёнными данными не существует!
                         </div>
 
-                        <input id="logLog" placeholder="Логин"><br>
+                        <input id="logLog" placeholder="Логин" style="margin-bottom: 2%;"><br>
                         <input id="logPas" placeholder="Пароль" type="password"><br>
                         <button id="btnLog" type="button" class="btn btn-lg btn-primary">Вход</button>
 
                     </div>
                     <div id="reg" class="hidden">
 
-                        <input id="regEmail" placeholder="E-mail"><br>
-                        <input id="regLog" placeholder="Логин"><br>
-                        <input id="regPas" placeholder="Пароль" type="password"><br>
-                        <input id="regReppas" placeholder="Повторите пароль" type="password"><br>
+                        <div id="regerr" class="alert alert-danger" role="alert" style="margin-left: 5%; margin-bottom: 5%; width: 90%; display: none;">
+                            
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-12 col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                                <input id="regEmail" class="regInp" placeholder="E-mail">
+                            </div>
+                            <div class="col-12 col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                                <input id="regLog" class="regInp" placeholder="Логин">
+                            </div>
+                            <div class="col-12 col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                                <input id="regPas" class="regInp" placeholder="Пароль" type="password">
+                            </div>
+                            <div class="col-12 col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                                <input id="regReppas" class="regInp" placeholder="Повторите пароль" type="password"><br>
+                            </div>
+
+                        </div>
+
                         <button id="btnReg" type="button" class="btn btn-lg btn-primary">Регистрация</button>
 
                     </div>

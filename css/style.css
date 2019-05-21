@@ -218,11 +218,11 @@ nav#mobile {
 #logreg input {
 
     padding: 0.75em 1.25em;
-    width: 60%;
+    width: 90%;
+    margin-bottom: 7%;
     font-size: 1.4em;
     border: solid white;
     font-family: 'Rubik';
-    margin-bottom: 2%;
     border-radius: 2em;
 
 }
@@ -255,6 +255,12 @@ nav#mobile {
 .hidden {
 
     display: none;
+
+}
+
+.regInp {
+
+    margin: 0 5%;
 
 }
 
@@ -302,6 +308,14 @@ button {
         color: black;
         display: block;
         padding: 2% 10%;
+
+    }
+
+    #logreg input {
+
+        padding: 0.75em 1.25em;
+        width: 80%;
+        margin-bottom: 2%;
 
     }
 
