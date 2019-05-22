@@ -1,0 +1,97 @@
+#main {
+
+    margin-top: 5%;
+
+}
+
+.boardCard {
+
+    cursor: pointer;
+    width: 100%;
+    border-radius: 2em;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    transition: 0.5s ease-out;
+
+}
+.boardCard:hover {
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+}
+.boardCard h1 {
+
+    text-align: center;
+    padding: 25% 5%;
+
+}
+
+#addCard {
+
+    cursor: pointer;
+    width: 100%;    
+    border-radius: 2em;
+    border: 0.5em dashed #00A0FF;
+    transition: 0.5s ease-out;
+
+}
+#addCard:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+#addCard img {
+    
+    margin-top: 10%;
+    margin-bottom: 5%;
+    width: 30%;
+
+}
+#addCard p {
+
+    color: #00A0FF;
+    font-family: 'Rubik Medium';
+    padding: 0 5%;
+    font-size: 1.5em;
+    margin-bottom: 10%;
+
+}
+
+.cardLayout {
+
+    padding: 2%;
+
+}
+
+@font-face {
+
+    font-family: 'Rubik Light';
+    src: url('fonts/Rubik-Light.ttf');
+
+}
+
+@font-face {
+
+    font-family: 'Rubik';
+    src: url('fonts/Rubik-Regular.ttf');
+
+}
+
+@font-face {
+
+    font-family: 'Rubik Medium';
+    src: url('fonts/Rubik-Medium.ttf');
+
+}
+
+@font-face {
+
+    font-family: 'Rubik Bold';
+    src: url('fonts/Rubik-Bold.ttf');
+
+}
+
+@font-face {
+
+    font-family: 'Rubik Black';
+    src: url('fonts/Rubik-Black.ttf');
+
+}

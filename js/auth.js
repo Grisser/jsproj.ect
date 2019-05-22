@@ -1,6 +1,38 @@
 'use strict';
 
+function getCookie(name) {
+
+    var matches = document.cookie.match(new RegExp(
+      "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+    ));
+    return matches ? decodeURIComponent(matches[1]) : undefined;
+
+}
+
+let user = getCookie('user');
 let selected = 1;
+
+if (user != undefined) {
+
+    let xhr = new XMLHttpRequest();
+
+    xhr.open('GET', 'api/check_activation.php?login=' + user, true);
+    xhr.send();
+
+    xhr.addEventListener('readystatechange', function(){
+
+        if (xhr.readyState == 4 && xhr.status == 200) {
+
+            if (xhr.responseText == "activated")
+                window.location.replace("home.html");
+            else if (xhr.responseText == "not activated")
+                window.location.replace("activate.html");
+
+        }
+
+    });
+
+}
 
 document.querySelector("#selLog").addEventListener('click', function(){
 
