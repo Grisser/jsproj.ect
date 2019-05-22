@@ -197,7 +197,7 @@ nav#mobile {
 
 }
 
-#logreg {
+#logreg, #activation {
 
     background-color: #eeeeee;
     text-align: center;
@@ -207,7 +207,7 @@ nav#mobile {
 
 }
 
-#logreg h1 {
+#logreg h1, #activation h1 {
 
     font-family: 'Rubik';
     font-size: 3em;
@@ -215,7 +215,7 @@ nav#mobile {
 
 }
 
-#logreg input {
+#logreg input, #activation input {
 
     padding: 0.75em 1.25em;
     width: 90%;
