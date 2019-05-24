@@ -28,7 +28,7 @@ else {
 
                             <a href="project.html?id={{id}}" style="color: white;">
 
-                                <div class="boardCard card bg-dark text-white" style="background-image: url('{{background}}');">
+                                <div class="boardCard card bg-dark text-white fadeIn animated" style="background-image: url('{{background}}');">
                                     
                                     <h1>{{title}}</h1>
 
@@ -42,8 +42,16 @@ else {
             //console.log(json);
             let template = Handlebars.compile(card);
 
-            for (let element of json)
+            for (let element of json) {
+
+                if (element.title == "")
+                    element.title = "Без названия";
+                if (element.background == "")
+                    element.background = "img/example.jpg";
+
                 document.querySelector("#projlist").innerHTML += template(element);
+
+            }
 
         }
 
@@ -105,8 +113,6 @@ $( document ).ready(function() {
 
                                 if (json.success)
                                     window.location.replace("project.html?id=" + json.id);
-
-                                
 
                             }
 

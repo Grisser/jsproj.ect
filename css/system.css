@@ -61,6 +61,84 @@
 
 }
 
+#projectblock {
+
+    position: absolute;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    padding-top: 10%;
+    padding-left: 25%;
+    width: 100%;
+    height: 100%;
+
+}
+
+#panel {
+
+    position: absolute;
+    width: 20%;
+    height: 100%;
+    padding-top: 5%;
+    padding-left: 3%;
+    padding-right: 3%;
+    padding-bottom: 10%;
+    overflow: scroll;
+    background-color: #eeeeee;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+
+}
+
+#saved {
+
+    transition: 0.2s ease-out;
+
+}
+
+.deskColumn {
+
+    display: inline-block;
+    vertical-align: top;
+    width: 25%;
+    padding: 2%;
+    border-radius: 1em;
+    margin-right: 3%;
+    background: white;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+
+}
+
+.deskColumn span {
+
+    font-family: 'Rubik';
+    font-size: 1.25em;
+
+}
+
+.item {
+
+    margin: 3% 0;
+
+}
+
+@media screen and (max-width: 1200px) {
+
+    #panel {
+
+        width: 35%;
+        padding-top: 10%;
+
+    }
+
+    #projectblock {
+
+        padding-left: 40%;
+
+    }
+
+}
+
 @font-face {
 
     font-family: 'Rubik Light';

@@ -12,7 +12,7 @@
 
         $query = mysqli_query($dbinfo, "SELECT * FROM projects WHERE id = '$element'");
         $row = mysqli_fetch_array($query);
-        $projects += [["id" => $element, "title" => $row['title'], "background" => $row['background']]];
+        array_push($projects, [ "id" => $element, "title" => $row['title'], "background" => $row['background'] ]);
 
     }
 
