@@ -9,7 +9,7 @@
 
     if (mysqli_num_rows($query) == 1) {
 
-        mysqli_query($dbinfo, "UPDATE users SET activated = 1, actcode = 10000, projects = \"{}\" WHERE login = '$login'");
+        mysqli_query($dbinfo, "UPDATE users SET activated = 1, actcode = 10000, projects = \"[]\" WHERE login = '$login'");
         echo "success";
 
     } else 

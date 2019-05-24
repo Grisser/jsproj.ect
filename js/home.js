@@ -76,7 +76,6 @@ $( document ).ready(function() {
 
                                         <h5 class="card-title">{{title}}</h5>
                                         <p class="card-text">{{desc}}</p>
-                                        <input id="cardInp{{id}}" type="text" class="form-control" placeholder="Название" aria-label="Username" aria-describedby="basic-addon1" style="margin-bottom: 7%;">
                                         <button id="cardBut{{id}}" type="button" class="btn btn-primary" style="width: 100%;">Создать</button>
 
                                     </div>
@@ -94,14 +93,18 @@ $( document ).ready(function() {
                     document.querySelector("#cardBut" + element.id).addEventListener('click', function(){
 
                         let createXHR = new XMLHttpRequest();
-                        let title = document.querySelector("#cardInp" + element.id).value;
-
-                        createXHR.open('GET', 'api/create_project.php?login=' + user + '&id=' + element.id + '&title=' + title, true);
+                        
+                        createXHR.open('GET', 'api/create_project.php?login=' + user + '&id=' + element.id, true);
                         createXHR.send();
 
                         createXHR.addEventListener('readystatechange', function(){
 
                             if (createXHR.readyState == 4 && createXHR.status == 200) {
+
+                                let json = JSON.parse(createXHR.responseText);
+
+                                if (json.success)
+                                    window.location.replace("project.html?id=" + json.id);
 
                                 
 
