@@ -96,7 +96,7 @@ else {
 
             $.getScript('templates/js/' + id + '.js', function(){
 
-                loadStructure(json.structure);
+                generateStucture(json.structure);
 
             });
 
