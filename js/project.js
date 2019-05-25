@@ -95,7 +95,7 @@ else {
 
             if (json.title == "") {
 
-                $("#exampleModalCenter").modal('show');
+                $("#enterTitle").modal('show');
 
             }
 
@@ -145,7 +145,7 @@ document.querySelector("#saveTitle").addEventListener('click', function(){
 
         if (CTXHR.readyState == 4 && CTXHR.status == 200) {
 
-            $("#exampleModalCenter").modal('hide');
+            $("#enterTitle").modal('hide');
 
             document.querySelector("#panelTitle").value = json.title;
             document.querySelector("#projectblock").style.backgroundImage = 'url(' + json.background + ')';

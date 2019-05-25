@@ -118,6 +118,98 @@ function generateStucture(projid, projtitle, background, structure) {
             body.classList.add('card-body');
             head.classList.add('card-title');
 
+            itElement.style.cursor = 'pointer';
+
+            itElement.addEventListener('click', function() {
+
+                document.querySelector("#cardInfoTitle").innerHTML = item.title;
+                document.querySelector("#cardInfoDeadlinePlaceholder").innerHTML = "";
+                document.querySelector("#cardInfoLinksPlaceholder").innerHTML = "";
+
+                if (item.desc != undefined) {
+
+                    document.querySelector("#cardInfoDesc").innerHTML = item.desc;
+
+                }
+
+                if (item.deadline == undefined) {
+
+                    let addDeadline = document.createElement('span');
+
+                    addDeadline.innerHTML = "+ Добавить срок выполнения";
+                    addDeadline.style.color = "blue";
+                    addDeadline.style.cursor = "pointer";
+
+                    addDeadline.addEventListener('click', function() {
+
+                        let di = `<div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">Дедлайн</span>
+                                    </div>
+                                    <input id="cardInfoDeadline" type="date" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
+                                </div>`;
+
+                        document.querySelector("#cardInfoDeadlinePlaceholder").innerHTML = di;
+
+                    });
+
+                    document.querySelector("#cardInfoDeadlinePlaceholder").appendChild(addDeadline);
+
+                } else {
+
+                    let di = `<div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">Дедлайн</span>
+                                </div>
+                                <input id="cardInfoDeadline" type="date" value="` + item.deadline + `" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
+                            </div>`;
+
+                  document.querySelector("#cardInfoDeadlinePlaceholder").innerHTML = di;
+
+                }
+
+                if (item.links != undefined) {
+
+                    for (let link of item.links) {
+
+                        let li = `<div class="input-group mb-3" style="margin-top: 1.5%;">
+                                    <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">Ссылка</span>
+                                    </div>
+                                    <input type="text" value="` + link + `" class="cardInfoLink form-control" aria-label="Username" aria-describedby="basic-addon1">
+                                </div>`;
+
+                        document.querySelector("#cardInfoLinksPlaceholder").innerHTML += li;
+
+                    }
+
+                }
+
+                let addLink = document.createElement('span');
+
+                addLink.innerHTML = "+ Добавить ссылку";
+                addLink.style.color = "blue";
+                addLink.style.cursor = "pointer";
+
+                addLink.addEventListener('click', function(){
+
+                    let li = `<div class="input-group mb-3" style="margin-top: 1.5%;">
+                                <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">Ссылка</span>
+                                </div>
+                                <input type="text" class="cardInfoLink form-control" aria-label="Username" aria-describedby="basic-addon1">
+                            </div>`;
+
+                    document.querySelector("#cardInfoLinksPlaceholder").innerHTML += li;
+
+                });
+
+                document.querySelector("#cardInfoBody").appendChild(addLink);
+
+                $("#cardInfo").modal('show');
+
+            });
+
             head.innerHTML = item.title;
 
             body.appendChild(head);

@@ -18,7 +18,7 @@
 
             <div id="workspace">
 
-                
+
 
             </div>
 
@@ -30,12 +30,6 @@
             <input id="panelTitle" type="text" class="form-control" placeholder="Название" aria-label="Username" aria-describedby="basic-addon1"><br>
             <h4>Описание:</h4>
             <textarea id="panelDesc" class="form-control" aria-label="With textarea" placeholder="Ваше описание здесь"></textarea><br>
-            <h5>Настройки выбранного элемента:</h5>
-            <div id="elementSet">
-                
-
-
-            </div>
 
         </div>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -64,7 +58,7 @@
             <button id="exit" type="button" class="btn btn-danger" style="margin-left: 0.75%;">Выход</button>
 
         </nav>
-        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal fade" id="enterTitle" tabindex="-1" role="dialog" aria-labelledby="enterTitleTitle" aria-hidden="true">
 
             <div class="modal-dialog modal-dialog-centered" role="document">
 
@@ -72,7 +66,7 @@
 
                     <div class="modal-header">
 
-                        <h5 class="modal-title" id="exampleModalCenterTitle">Введите название доски</h5>
+                        <h5 class="modal-title" id="enterTitleTitle">Введите название доски</h5>
 
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -90,6 +84,55 @@
             </div>
 
         </div>
+        <div class="modal fade" id="cardInfo" tabindex="-1" role="dialog" aria-labelledby="cardInfoTitle" aria-hidden="true">
+
+            <div class="modal-dialog modal-dialog-scrollable modal-lg modal-dialog-centered" role="document">
+
+                <div class="modal-content">
+
+                    <div class="modal-header">
+
+                        <h5 class="modal-title" id="cardInfoTitle"></h5>
+
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div id="cardInfoBody" class="modal-body">
+
+                        <div class="input-group">
+
+                            <div class="input-group-prepend">
+
+                              <span class="input-group-text">Описание</span>
+
+                            </div>
+                            <textarea id="cardInfoDesc" class="form-control" placeholder="Ваше описание здесь" aria-label="With textarea"></textarea>
+
+                        </div>
+                        <div id="cardInfoDeadlinePlaceholder" style="margin-top: 3%;">
+
+
+
+                        </div>
+                        <div id="cardInfoLinksPlaceholder" style="margin-top: 2%;">
+
+                            
+
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button id="saveCardInfo" type="button" class="btn btn-primary">Сохранить</button>
+                        <button id="deleteCard" type="button" class="btn btn-danger" style="margin-left: 0.75%;">Удалить карточку</button>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+        
         <script src="js/jquery-3.4.1.min.js"></script>
         <script src="js/bootstrap.bundle.min.js"></script>
         <script src="js/handlebars-v4.1.2.js"></script>
