@@ -8,6 +8,7 @@ function generateStucture(projid, projtitle, background, structure) {
     let id = 0;
     let hasEditor = [];
     let creatingColumn = false;
+    let selectedItem;
 
     for (let column of json.columns) {
 
@@ -64,13 +65,13 @@ function generateStucture(projid, projtitle, background, structure) {
                         
                     } else {
 
-                        let obj = {
+                        let item = {
 
                             title: addInput.value
 
                         };
 
-                        column.items.push(obj);
+                        column.items.push(item);
                         ce.removeChild(document.querySelector("#create" + ci));
                         hasEditor[ci - 1] = false;
 
@@ -83,7 +84,131 @@ function generateStucture(projid, projtitle, background, structure) {
                         body.classList.add('card-body');
                         head.classList.add('card-title');
 
-                        head.innerHTML = obj.title;
+                        head.innerHTML = item.title;
+
+                        itElement.addEventListener('click', function() {
+
+                            document.querySelector("#cardInfoTitle").innerHTML = item.title;
+                            document.querySelector("#cardInfoDeadlinePlaceholder").innerHTML = "";
+                            document.querySelector("#cardInfoLinksPlaceholder").innerHTML = "";
+                            document.querySelector("#cardInfoBody").removeChild(document.querySelector("#cardInfoBody").lastChild);
+            
+                            if (item.desc != undefined) {
+            
+                                document.querySelector("#cardInfoDesc").innerHTML = item.desc;
+            
+                            }
+            
+                            if (item.deadline == undefined) {
+            
+                                let addDeadline = document.createElement('span');
+            
+                                addDeadline.innerHTML = "+ Добавить срок выполнения";
+                                addDeadline.style.color = "blue";
+                                addDeadline.style.cursor = "pointer";
+            
+                                addDeadline.addEventListener('click', function() {
+            
+                                    let di = `<div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                <span class="input-group-text" id="basic-addon1">Дедлайн</span>
+                                                </div>
+                                                <input id="cardInfoDeadline" type="date" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
+                                            </div>`;
+            
+                                    document.querySelector("#cardInfoDeadlinePlaceholder").innerHTML = di;
+            
+                                });
+            
+                                document.querySelector("#cardInfoDeadlinePlaceholder").appendChild(addDeadline);
+            
+                            } else {
+            
+                                let di = `<div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">Дедлайн</span>
+                                            </div>
+                                            <input id="cardInfoDeadline" type="date" value="` + item.deadline + `" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
+                                        </div>`;
+            
+                              document.querySelector("#cardInfoDeadlinePlaceholder").innerHTML = di;
+            
+                            }
+            
+                            if (item.links != undefined) {
+            
+                                for (let link of item.links) {
+            
+                                    let li = `<div class="input-group mb-3" style="margin-top: 1.5%;">
+                                                <div class="input-group-prepend">
+                                                <span class="input-group-text" id="basic-addon1">Ссылка</span>
+                                                </div>
+                                                <input type="text" value="` + link + `" class="cardInfoLink form-control" aria-label="Username" aria-describedby="basic-addon1">
+                                            </div>`;
+            
+                                    document.querySelector("#cardInfoLinksPlaceholder").innerHTML += li;
+            
+                                }
+            
+                            }
+            
+                            let addLink = document.createElement('span');
+            
+                            addLink.innerHTML = "+ Добавить ссылку";
+                            addLink.style.color = "blue";
+                            addLink.style.cursor = "pointer";
+            
+                            addLink.addEventListener('click', function(){
+            
+                                let li = `<div class="input-group mb-3" style="margin-top: 1.5%;">
+                                            <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">Ссылка</span>
+                                            </div>
+                                            <input type="text" class="cardInfoLink form-control" aria-label="Username" aria-describedby="basic-addon1">
+                                        </div>`;
+            
+                                document.querySelector("#cardInfoLinksPlaceholder").innerHTML += li;
+            
+                            });
+            
+                            document.querySelector("#cardInfoBody").appendChild(addLink);
+                            document.querySelector("#saveCardInfo").onclick = function() {
+            
+                                item.title = document.querySelector("#cardInfoTitle").innerHTML;
+            
+                                if (document.querySelector("#cardInfoDesc").value != "")
+                                    item.desc = document.querySelector("#cardInfoDesc").value;
+                                
+                                let deadlineel = document.getElementById("cardInfoDeadline");
+            
+                                if (deadlineel != null) {
+            
+                                    if (deadlineel.value != "")
+                                        item.deadline = deadlineel.value;
+                                    else
+                                        delete item.deadline;
+            
+                                }
+            
+                                let linksel = document.querySelectorAll(".cardInfoLink");
+                                item.links = [];
+            
+                                for (let linkel of linksel) {
+                                
+                                    if (linkel.value != "")
+                                        item.links.push(linkel.value);
+            
+                                }
+            
+                                console.log(JSON.stringify(json));
+            
+                                $("#cardInfo").modal('hide');
+            
+                            };
+            
+                            $("#cardInfo").modal('show');
+            
+                        });
 
                         body.appendChild(head);
                         itElement.appendChild(body);
@@ -125,6 +250,7 @@ function generateStucture(projid, projtitle, background, structure) {
                 document.querySelector("#cardInfoTitle").innerHTML = item.title;
                 document.querySelector("#cardInfoDeadlinePlaceholder").innerHTML = "";
                 document.querySelector("#cardInfoLinksPlaceholder").innerHTML = "";
+                document.querySelector("#cardInfoBody").removeChild(document.querySelector("#cardInfoBody").lastChild);
 
                 if (item.desc != undefined) {
 
@@ -205,6 +331,44 @@ function generateStucture(projid, projtitle, background, structure) {
                 });
 
                 document.querySelector("#cardInfoBody").appendChild(addLink);
+                document.querySelector("#deleteCard").onclick = function() {
+
+                    //delete item;
+
+                }
+                document.querySelector("#saveCardInfo").onclick = function() {
+
+                    item.title = document.querySelector("#cardInfoTitle").innerHTML;
+
+                    if (document.querySelector("#cardInfoDesc").value != "")
+                        item.desc = document.querySelector("#cardInfoDesc").value;
+                    
+                    let deadlineel = document.getElementById("cardInfoDeadline");
+
+                    if (deadlineel != null) {
+
+                        if (deadlineel.value != "")
+                            item.deadline = deadlineel.value;
+                        else
+                            delete item.deadline;
+
+                    }
+
+                    let linksel = document.querySelectorAll(".cardInfoLink");
+                    item.links = [];
+
+                    for (let linkel of linksel) {
+                                
+                        if (linkel.value != "")
+                            item.links.push(linkel.value);
+
+                    }
+
+                    console.log(JSON.stringify(json));
+
+                    $("#cardInfo").modal('hide');
+
+                };
 
                 $("#cardInfo").modal('show');
 
@@ -321,13 +485,13 @@ function generateStucture(projid, projtitle, background, structure) {
                             
                         } else {
 
-                            let obj = {
+                            let item = {
 
                                 title: addInput.value
 
                             };
 
-                            json.columns[id - 1].items.push(obj);
+                            json.columns[id - 1].items.push(item);
 
                             ce.removeChild(document.querySelector("#create" + ci));
                             hasEditor[ci - 1] = false;
@@ -341,7 +505,136 @@ function generateStucture(projid, projtitle, background, structure) {
                             body.classList.add('card-body');
                             head.classList.add('card-title');
 
-                            head.innerHTML = obj.title;
+                            head.innerHTML = item.title;
+
+                            itElement.addEventListener('click', function() {
+
+                                document.querySelector("#cardInfoTitle").innerHTML = item.title;
+                                document.querySelector("#cardInfoDeadlinePlaceholder").innerHTML = "";
+                                document.querySelector("#cardInfoLinksPlaceholder").innerHTML = "";
+                                document.querySelector("#cardInfoBody").removeChild(document.querySelector("#cardInfoBody").lastChild);
+                
+                                if (item.desc != undefined) {
+                
+                                    document.querySelector("#cardInfoDesc").innerHTML = item.desc;
+                
+                                }
+                
+                                if (item.deadline == undefined) {
+                
+                                    let addDeadline = document.createElement('span');
+                
+                                    addDeadline.innerHTML = "+ Добавить срок выполнения";
+                                    addDeadline.style.color = "blue";
+                                    addDeadline.style.cursor = "pointer";
+                
+                                    addDeadline.addEventListener('click', function() {
+                
+                                        let di = `<div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="basic-addon1">Дедлайн</span>
+                                                    </div>
+                                                    <input id="cardInfoDeadline" type="date" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
+                                                </div>`;
+                
+                                        document.querySelector("#cardInfoDeadlinePlaceholder").innerHTML = di;
+                
+                                    });
+                
+                                    document.querySelector("#cardInfoDeadlinePlaceholder").appendChild(addDeadline);
+                
+                                } else {
+                
+                                    let di = `<div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                <span class="input-group-text" id="basic-addon1">Дедлайн</span>
+                                                </div>
+                                                <input id="cardInfoDeadline" type="date" value="` + item.deadline + `" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
+                                            </div>`;
+                
+                                  document.querySelector("#cardInfoDeadlinePlaceholder").innerHTML = di;
+                
+                                }
+                
+                                if (item.links != undefined) {
+                
+                                    for (let link of item.links) {
+                
+                                        let li = `<div class="input-group mb-3" style="margin-top: 1.5%;">
+                                                    <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="basic-addon1">Ссылка</span>
+                                                    </div>
+                                                    <input type="text" value="` + link + `" class="cardInfoLink form-control" aria-label="Username" aria-describedby="basic-addon1">
+                                                </div>`;
+                
+                                        document.querySelector("#cardInfoLinksPlaceholder").innerHTML += li;
+                
+                                    }
+                
+                                }
+                
+                                let addLink = document.createElement('span');
+                
+                                addLink.innerHTML = "+ Добавить ссылку";
+                                addLink.style.color = "blue";
+                                addLink.style.cursor = "pointer";
+                
+                                addLink.addEventListener('click', function(){
+                
+                                    let li = `<div class="input-group mb-3" style="margin-top: 1.5%;">
+                                                <div class="input-group-prepend">
+                                                <span class="input-group-text" id="basic-addon1">Ссылка</span>
+                                                </div>
+                                                <input type="text" class="cardInfoLink form-control" aria-label="Username" aria-describedby="basic-addon1">
+                                            </div>`;
+                
+                                    document.querySelector("#cardInfoLinksPlaceholder").innerHTML += li;
+                
+                                });
+                
+                                document.querySelector("#cardInfoBody").appendChild(addLink);
+                                document.querySelector("#deleteCard").onclick = function() {
+                
+                                    //delete item;
+                
+                                }
+                                document.querySelector("#saveCardInfo").onclick = function() {
+                
+                                    item.title = document.querySelector("#cardInfoTitle").innerHTML;
+                
+                                    if (document.querySelector("#cardInfoDesc").value != "")
+                                        item.desc = document.querySelector("#cardInfoDesc").value;
+                                    
+                                    let deadlineel = document.getElementById("cardInfoDeadline");
+                
+                                    if (deadlineel != null) {
+                
+                                        if (deadlineel.value != "")
+                                            item.deadline = deadlineel.value;
+                                        else
+                                            delete item.deadline;
+                
+                                    }
+                
+                                    let linksel = document.querySelectorAll(".cardInfoLink");
+                                    item.links = [];
+                
+                                    for (let linkel of linksel) {
+                                                
+                                        if (linkel.value != "")
+                                            item.links.push(linkel.value);
+                
+                                    }
+                
+                                    console.log(JSON.stringify(json));
+                
+                                    $("#cardInfo").modal('hide');
+                
+                                };
+                
+                                $("#cardInfo").modal('show');
+                
+                            });
 
                             body.appendChild(head);
                             itElement.appendChild(body);
