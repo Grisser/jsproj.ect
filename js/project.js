@@ -96,7 +96,7 @@ else {
 
             $.getScript('templates/js/' + id + '.js', function(){
 
-                generateStucture(json.structure);
+                generateStucture(id, json.title, json.background, json.structure);
 
             });
 
@@ -111,13 +111,6 @@ function hideSaveText() {
     document.querySelector("#saved").style.opacity = '0';
 
 }
-
-document.querySelector("#save").addEventListener('click', function(){
-
-    document.querySelector("#saved").style.opacity = '1';
-    let timerID = setTimeout(hideSaveText, 2000);
-
-});
 
 document.querySelector("#saveTitle").addEventListener('click', function(){
 

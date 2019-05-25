@@ -1,6 +1,6 @@
 'use strict';
 
-function generateStucture(structure) {
+function generateStucture(projid, projtitle, background, structure) {
 
     document.querySelector("#workspace").innerHTML = "";
 
@@ -189,8 +189,6 @@ function generateStucture(structure) {
                     
                     json.columns.push(obj);
 
-                    console.log(JSON.stringify(json));
-
                     upRow.removeChild(title);
                     
                     title = document.createElement('span');
@@ -282,5 +280,31 @@ function generateStucture(structure) {
     });
 
     document.querySelector("#workspace").appendChild(createCard);
+
+    document.querySelector("#save").addEventListener('click', function(){
+
+        let xhr = new XMLHttpRequest();
+        let formData = new FormData();
+
+        formData.append("id", projid);
+        formData.append("title", projtitle);
+        formData.append("background", background);
+        formData.append("structure", JSON.stringify(json));
+
+        xhr.open('POST', 'api/update_desk.php', true);
+        xhr.send(formData);
+
+        xhr.addEventListener('readystatechange', function(){
+
+            if (xhr.readyState == 4 && xhr.status == 200) {
+
+                document.querySelector("#saved").style.opacity = '1';
+                let timerID = setTimeout(hideSaveText, 2000);
+
+            }
+
+        });
+    
+    });
 
 }
