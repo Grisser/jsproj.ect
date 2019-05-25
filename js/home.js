@@ -9,6 +9,14 @@ function getCookie(name) {
 
 }
 
+function delete_cookie ( cookie_name ) {
+
+    var cookie_date = new Date ( );
+    cookie_date.setTime ( cookie_date.getTime() - 1 );
+    document.cookie = cookie_name += "=; expires=" + cookie_date.toGMTString();
+
+}
+
 let user = getCookie('user');
 
 if (user == undefined)
@@ -58,6 +66,13 @@ else {
     });
 
 }
+
+document.querySelector("#exit").addEventListener('click', function(){
+
+    delete_cookie('user');
+    window.location.replace('login.html');
+
+});
 
 $( document ).ready(function() {
 

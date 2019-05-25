@@ -9,6 +9,14 @@ function getCookie(name) {
 
 }
 
+function delete_cookie ( cookie_name ) {
+
+    var cookie_date = new Date ( );
+    cookie_date.setTime ( cookie_date.getTime() - 1 );
+    document.cookie = cookie_name += "=; expires=" + cookie_date.toGMTString();
+
+}
+
 function getAllUrlParams(url) {
 
     var queryString = url ? url.split('?')[1] : window.location.search.slice(1);
@@ -111,6 +119,13 @@ function hideSaveText() {
     document.querySelector("#saved").style.opacity = '0';
 
 }
+
+document.querySelector("#exit").addEventListener('click', function(){
+
+    delete_cookie('user');
+    window.location.replace('login.html');
+
+});
 
 document.querySelector("#saveTitle").addEventListener('click', function(){
 
