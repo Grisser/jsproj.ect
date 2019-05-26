@@ -176,6 +176,21 @@ function generateStucture(projid, projtitle, background, structure) {
                             });
             
                             document.querySelector("#cardInfoBody").appendChild(addLink);
+                            document.querySelector("#deleteCard").onclick = function() {
+
+                                if (citid > 0)
+                                    json.columns[ci - 1].items.splice(citid, citid);
+                                else
+                                    json.columns[ci - 1].items.splice(citid, citid + 1);
+            
+                                citid -= 1;
+                                itid -= 1;
+                                colElement.removeChild(itElement);
+                                $("#cardInfo").modal('hide');
+            
+                                console.log(JSON.stringify(json));
+            
+                            }
                             document.querySelector("#saveCardInfo").onclick = function() {
             
                                 item.title = document.querySelector("#cardInfoTitle").innerHTML;
@@ -346,6 +361,7 @@ function generateStucture(projid, projtitle, background, structure) {
                     else
                         json.columns[ci - 1].items.splice(citid, citid + 1);
 
+                    citid -= 1;
                     itid -= 1;
                     colElement.removeChild(itElement);
                     $("#cardInfo").modal('hide');
@@ -611,8 +627,18 @@ function generateStucture(projid, projtitle, background, structure) {
                 
                                 document.querySelector("#cardInfoBody").appendChild(addLink);
                                 document.querySelector("#deleteCard").onclick = function() {
+
+                                    if (citid > 0)
+                                        json.columns[ci - 1].items.splice(citid, citid);
+                                    else
+                                        json.columns[ci - 1].items.splice(citid, citid + 1);
                 
-                                    //delete item;
+                                    citid -= 1;
+                                    itid -= 1;
+                                    colElement.removeChild(itElement);
+                                    $("#cardInfo").modal('hide');
+                
+                                    console.log(JSON.stringify(json));
                 
                                 }
                                 document.querySelector("#saveCardInfo").onclick = function() {
