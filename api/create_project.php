@@ -10,7 +10,10 @@
 
     $id++;
 
-    mysqli_query($dbinfo, "INSERT INTO projects (id, templateid) VALUES ('$id', '$projid')");
+    $query = mysqli_query($dbinfo, "SELECT jsonstartstructure FROM projtemplates WHERE id = '$projid'");
+    $structure = mysqli_fetch_array($query)['jsonstartstructure'];
+
+    mysqli_query($dbinfo, "INSERT INTO projects (id, templateid, structure) VALUES ('$id', '$projid', '$structure')");
 
     $query = mysqli_query($dbinfo, "SELECT projects FROM users WHERE login = '$login'");
     $res = json_decode(mysqli_fetch_array($query)['projects']);

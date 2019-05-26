@@ -25,7 +25,7 @@
         else {
 
             $row = mysqli_fetch_array($query);
-            echo json_encode(["title" => $row['title'], "background" => $row['background'], "structure" => $row['structure']]);
+            echo json_encode(["projid" => $row['templateid'], "title" => $row['title'], "background" => $row['background'], "structure" => $row['structure']]);
 
         }
 

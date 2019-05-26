@@ -91,22 +91,24 @@ else {
 
         if (xhr.readyState == 4 && xhr.status == 200) {
 
-            json = JSON.parse(xhr.responseText);
+            if (xhr.responseText == "false")
+                window.location.replace("home.html");
+            else {
 
-            if (json.title == "") {
+                json = JSON.parse(xhr.responseText);
 
-                $("#enterTitle").modal('show');
+                if (json.background != "")
+                    document.querySelector("#projectblock").style.backgroundImage = 'url(' + json.background + ')';
+                else
+                    document.querySelector("#projectblock").style.backgroundImage = 'url(img/example.jpg)';
+
+                $.getScript('templates/js/' + json.projid + '.js', function(){
+
+                    generateStucture(id, json.title, json.background, json.structure);
+
+                });
 
             }
-
-            
-            document.querySelector("#projectblock").style.backgroundImage = 'url(' + json.background + ')';
-
-            $.getScript('templates/js/' + id + '.js', function(){
-
-                generateStucture(id, json.title, json.background, json.structure);
-
-            });
 
         }
 

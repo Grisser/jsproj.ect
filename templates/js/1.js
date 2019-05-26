@@ -10,6 +10,10 @@ function generateStucture(projid, projtitle, background, structure) {
     let creatingColumn = false;
     let selectedItem;
 
+    document.querySelector("#panelTitle").value = projtitle;
+    document.querySelector("#panelDesc").value = json.desc;
+    document.querySelector("#panelBackground").value = background;
+
     for (let column of json.columns) {
 
         id += 1;
@@ -200,8 +204,6 @@ function generateStucture(projid, projtitle, background, structure) {
             
                                 }
             
-                                console.log(JSON.stringify(json));
-            
                                 $("#cardInfo").modal('hide');
             
                             };
@@ -232,6 +234,8 @@ function generateStucture(projid, projtitle, background, structure) {
 
         colElement.appendChild(upRow);
 
+        let itid = 0;
+
         for (let item of column.items) {
 
             let itElement = document.createElement('div');
@@ -245,7 +249,11 @@ function generateStucture(projid, projtitle, background, structure) {
 
             itElement.style.cursor = 'pointer';
 
+            let citid = itid;
+
             itElement.addEventListener('click', function() {
+
+                
 
                 document.querySelector("#cardInfoTitle").innerHTML = item.title;
                 document.querySelector("#cardInfoDeadlinePlaceholder").innerHTML = "";
@@ -333,7 +341,16 @@ function generateStucture(projid, projtitle, background, structure) {
                 document.querySelector("#cardInfoBody").appendChild(addLink);
                 document.querySelector("#deleteCard").onclick = function() {
 
-                    //delete item;
+                    if (citid > 0)
+                        json.columns[ci - 1].items.splice(citid, citid);
+                    else
+                        json.columns[ci - 1].items.splice(citid, citid + 1);
+
+                    itid -= 1;
+                    colElement.removeChild(itElement);
+                    $("#cardInfo").modal('hide');
+
+                    console.log(JSON.stringify(json));
 
                 }
                 document.querySelector("#saveCardInfo").onclick = function() {
@@ -364,8 +381,6 @@ function generateStucture(projid, projtitle, background, structure) {
 
                     }
 
-                    console.log(JSON.stringify(json));
-
                     $("#cardInfo").modal('hide');
 
                 };
@@ -379,6 +394,8 @@ function generateStucture(projid, projtitle, background, structure) {
             body.appendChild(head);
             itElement.appendChild(body);
             colElement.appendChild(itElement);
+
+            itid += 1;
 
         }
 
@@ -436,20 +453,20 @@ function generateStucture(projid, projtitle, background, structure) {
 
                     creatingColumn = false;
 
-                    let obj = {
+                    let item = {
 
                         title: title.value,
                         items: []
 
                     };
                     
-                    json.columns.push(obj);
+                    json.columns.push(item);
 
                     upRow.removeChild(title);
                     
                     title = document.createElement('span');
                     title.classList.add('col-10');
-                    title.innerHTML = obj.title;
+                    title.innerHTML = item.title;
 
                     upRow.insertBefore(title, add);
 
@@ -491,7 +508,7 @@ function generateStucture(projid, projtitle, background, structure) {
 
                             };
 
-                            json.columns[id - 1].items.push(item);
+                            json.columns[ci - 1].items.push(item);
 
                             ce.removeChild(document.querySelector("#create" + ci));
                             hasEditor[ci - 1] = false;
@@ -626,8 +643,6 @@ function generateStucture(projid, projtitle, background, structure) {
                 
                                     }
                 
-                                    console.log(JSON.stringify(json));
-                
                                     $("#cardInfo").modal('hide');
                 
                                 };
@@ -670,6 +685,12 @@ function generateStucture(projid, projtitle, background, structure) {
 
         let xhr = new XMLHttpRequest();
         let formData = new FormData();
+
+        projtitle = document.querySelector("#panelTitle").value;
+        json.desc = document.querySelector("#panelDesc").value;
+        background = document.querySelector("#panelBackground").value;
+
+        document.querySelector("#projectblock").style.backgroundImage = 'url(' + background + ')';
 
         formData.append("id", projid);
         formData.append("title", projtitle);
